@@ -7,5 +7,23 @@ services:
     volumes:
       - ./service:/service
 
+    environment:
+      - DB_HOST=database
+      - DB_NAME=service_app_db
+      - DB_USER=root
+      - DB_PASS=pass
+
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000"
+
+    depends_on:
+      - database
+
+  database:
+    image: postgres:14.6-alpine
+    environment:
+      - POSTGRES_DB=service_app_db
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=pass
+    ports:
+      - 5433:5432
