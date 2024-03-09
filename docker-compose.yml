@@ -26,4 +26,4 @@ services:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=pass
     ports:
-      - 5433:5432
+      - 5432
